@@ -1,8 +1,13 @@
 provider "aws" {
-    region = "us-west-2"
+    region = var.region
 }
 
 resource "aws_instance" "base" {
-  ami           = "ami-0d729a60"
-  instance_type = "t2.micro"
+    ami           = var.ami[var.region]
+    instance_type = "t2.micro"
+}
+
+resource "aws_eip" "base" {
+    instance    = aws_instance.base.id
+    vpc         = true
 }
