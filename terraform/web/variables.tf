@@ -19,3 +19,14 @@ variable "instance_type" {
   description = "The instance type"
   default     = "t2.micro"
 }
+
+variable "instance_ips" {
+  type        = list(string)
+  description = "The IPs to use for our instances"
+  default     = ["10.0.1.20", "10.0.1.21"]
+}
+
+variable "owner_tag" {
+  type    = list(string)
+  default = ["team1", "team2"]
+}

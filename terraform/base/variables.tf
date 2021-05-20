@@ -11,12 +11,12 @@ variable "region_list" {
 }
 
 variable "ami" {
-  type          = map(string)
-  default       = {
+  type = map(string)
+  default = {
     us-east-1 = "ami-0d729a60"
     us-west-1 = "ami-7c4b331c"
   }
-    description = "The AMIs to use"
+  description = "The AMIs to use"
 }
 
 variable "security_group_ids" {
