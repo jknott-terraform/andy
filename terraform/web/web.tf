@@ -22,12 +22,15 @@ resource "aws_instance" "web" {
 
 resource "aws_elb" "web" {
   name = "web-elb"
-  subnets = module.vpc_basic.public_subnet_id
-  security_groups = aws.security_group.web_inbound_sg.id
+  subnets = [module.vpc_basic.public_subnet_id]
+  security_groups = [aws.security_group.web_inbound_sg.id]
   listener {
     instance_port = 80
+    instance_protocol = "http"
+    lb_port = 80
+    lb_protocol = "http"
   }
-  instances = aws_instance.web.*.id
+  instances = aws_instance.web[*].id
 }
 
 resource "aws_security_group" "web_inbound_sg" {

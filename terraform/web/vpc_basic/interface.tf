@@ -33,6 +33,7 @@ variable "map_public_ip_on_launch" {
 
 output "public_subnet_id" {
   value = aws_subnet.public.id
+  sensitive = true
 }
 
 output "vpc_id" {
